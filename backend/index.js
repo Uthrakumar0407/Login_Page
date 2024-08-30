@@ -15,7 +15,7 @@ const db = mysql.createConnection({
   password: 'novalnet',
   database: 'myapp'
 });
-
+//Testing GIT
 db.connect(err => {
   if (err) throw err;
   console.log('MySQL connected...');
