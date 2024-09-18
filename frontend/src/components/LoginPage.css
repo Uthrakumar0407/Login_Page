@@ -74,7 +74,18 @@
   /* Message styles */
   p {
     margin-top: 1rem;
-    font-size: 0.9rem;
-    color: #3c4ae7;
+    font-size: 1.3rem;
+    color: #38e428;
   }
   
+  .success-message {
+    color: green;
+    font-weight: normal;
+    margin-top: 10px;
+  }
+  
+  .error-message {
+    color: red;
+    font-weight: nomal;
+    margin-top: 10px;
+  }
