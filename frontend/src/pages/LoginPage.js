@@ -48,7 +48,7 @@ const LoginPage = () => {
         localStorage.setItem('token', response.data.token);
         const token = localStorage.getItem('token');
 
-        console.log("Token in localStorage:", token);
+        // console.log("Token in localStorage:", token);
 
         if (token) {
           setMessage('Login successful');
@@ -63,18 +63,19 @@ const LoginPage = () => {
         setMessageType('error');
         setForm({ username: '', email: '', password: '', confirmPassword: '' });
         console.error('Login error:', error);
-      }
+      } 
     }
 
   };
 
   const renderLoginForm = () => (
+    <body class="login-body">
     <div>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input type="text" name="email" placeholder="Email*" onChange={handleChange} value={form.email} required />
         <input type="password" name="password" placeholder="Password*" onChange={handleChange} value={form.password} required />
-        <button type="submit">Login</button>
+        <button className="login_button">Login</button>
       </form>
       <br />
       <button onClick={() => {
@@ -84,9 +85,11 @@ const LoginPage = () => {
       }}>Register</button>
       {message && <p className={messageType === 'success' ? 'success-message' : 'error-message'}>{message}</p>}
     </div>
+    </body>
   );
 
   const renderRegisterForm = () => (
+<body class="register-body">
     <div>
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
@@ -94,7 +97,7 @@ const LoginPage = () => {
         <input type="email" name="email" placeholder="Email*" onChange={handleChange} value={form.email} required />
         <input type="password" name="password" placeholder="Password*" onChange={handleChange} value={form.password} required />
         <input type="password" name="confirmPassword" placeholder="Confirm Password*" onChange={handleChange} value={form.confirmPassword} required />
-        <button type="submit">Register</button>
+        <button className="register_button">Register</button>
       </form>
       <br />
       <button onClick={() => {
@@ -104,6 +107,7 @@ const LoginPage = () => {
       }}>Back to Login</button>
       {message && <p className={messageType === 'success' ? 'success-message' : 'error-message'}>{message}</p>}
     </div>
+    </body>
   );
 
   return (
