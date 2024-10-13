@@ -1,92 +1,86 @@
 /* Reset default margin and padding */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /*div display type*/
-  .Login{display: inline;}
-  
-  .Register{display: inline;}
-  
-  
-  /* Body and general styles */
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  /* Container for centering content */
-  .container {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    align-items: center;
-    max-width: 400px;
-    width: 100%;
-  }
-  
-  /* Heading styles */
-  h2 {
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    color: #333;
-  }
-  
-  /* Form styles */
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Input styles */
-  input {
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    width: 200%;
-  }
-  
-  /* Button styles */
-  button {
-    padding: 0.75rem;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #007bff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Message styles */
-  p {
-    margin-top: 1rem;
-    font-size: 1.3rem;
-    color: #38e428;
-  }
-  
-  .success-message {
-    color: green;
-    font-weight: normal;
-    margin-top: 10px;
-  }
-  
-  .error-message {
-    color: red;
-    font-weight: nomal;
-    margin-top: 10px;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Display inline for login/register links */
+.Login, .Register {
+  display: inline;
+}
+
+/* General body styling */
+body.login-body, body.register-body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Center the login form content */
+.container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 350px; /* Limit the container width */
+  width: 100%; /* Ensure it takes up the available width, but not more than 350px */
+  margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Form heading */
+h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+}
+
+/* Form and input styling */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 200%; /* Fix the width to 100% of the container */
+}
+
+/* Button styling */
+button {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Success and error message styling */
+.success-message, .error-message {
+  margin-top: 10px;
+  font-weight: normal;
+}
+
+.success-message {
+  color: green;
+}
+
+.error-message {
+  color: red;
+}

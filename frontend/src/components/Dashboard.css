@@ -1,27 +1,90 @@
+/* Main container for the dashboard */
 .dashboard {
-    text-align: center;
-  }
-  
-  .dashboard h2 {
-    color: #333;
-  }
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  justify-content: flex-start; /* Aligns content at the top */
+}
 
-  .logout {
-    text-align: center;
-  }
+/* Header section: Positioned in the top-right corner */
+.dashboard-header {
+  display: flex;
+  justify-content: flex-end; /* Push content (username, logout) to the right */
+  align-items: center;
+  padding: 10px;
+  background-color: #f8f8f8;
+  position: fixed; /* Make the header fixed at the top-right corner */
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1;
+}
 
-  .logout {
-    color: #ffffff;
-  }
+/* Username styling */
+.username {
+  margin-right: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
 
-  .logout {
-    padding: 0.75rem;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #007bff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
+/* Logout button styling */
+.logout-button {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
+
+/* Container for the project section */
+.project-section {
+  margin-top: 60px; /* Add space below the fixed header */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns everything to the left */
+  width: 60%; /* Adjust this based on your desired layout */
+}
+
+/* Styling for the Create Project button */
+.create {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  padding: 10px 20px; /* Space around the text */
+  margin-bottom: 20px; /* Adds space between the button and the table */
+  border: none; /* Remove borders */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Adjust font size */
+}
+
+.create:hover {
+  background-color: #45a049; /* Slightly darker green when hovering */
+}
+
+/* Table styling */
+.project-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.project-table th, .project-table td {
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: left;
+}
+
+.project-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.project-table tr:hover {
+  background-color: #f1f1f1; /* Hover effect for rows */
+}
