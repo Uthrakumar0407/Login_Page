@@ -37,6 +37,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s; /* Add transition */
 }
 
 .logout-button:hover {
@@ -53,7 +54,7 @@
 }
 
 /* Styling for the Create Project button */
-.create {
+.createProject {
   background-color: #4CAF50; /* Green background */
   color: white; /* White text */
   padding: 10px 20px; /* Space around the text */
@@ -62,6 +63,29 @@
   border-radius: 4px; /* Rounded corners */
   cursor: pointer; /* Pointer cursor on hover */
   font-size: 16px; /* Adjust font size */
+  transition: background-color 0.3s; /* Add transition */
+}
+
+.editProject {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  padding: 10px 20px;
+  border: none; /* Remove borders */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 14px; /* Adjust font size */
+  transition: background-color 0.3s; /* Add transition */
+  margin-right: 10px;
+}
+
+.deleteProject {
+  background-color: #db0808; /* Green background */
+  color: white; /* White text */
+  border: none; /* Remove borders */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 14px; /* Adjust font size */
+  
 }
 
 .create:hover {
@@ -74,7 +98,8 @@
   border-collapse: collapse;
 }
 
-.project-table th, .project-table td {
+.project-table th,
+.project-table td {
   border: 1px solid #ddd;
   padding: 20px;
   text-align: left;
@@ -87,4 +112,148 @@
 
 .project-table tr:hover {
   background-color: #f1f1f1; /* Hover effect for rows */
+}
+
+/* Modal overlay styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure modal is on top */
+}
+
+/* Modal content box */
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  width: 400px;
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Soft shadow */
+  position: relative;
+  animation: slideDown 0.3s ease; /* Optional animation */
+}
+
+/* Form elements */
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="email"],
+.modal-content input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Button styles in modal */
+.modal-content button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff; /* Primary button color */
+  color: white;
+  font-size: 14px;
+  transition: background-color 0.3s; /* Add transition */
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.modal-content button[type="button"] {
+  background-color: #dc3545; /* Red for cancel button */
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* Optional: Add a slide-down animation */
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .project-section {
+    width: 90%; /* Make project section narrower on smaller screens */
+  }
+
+  .modal-content {
+    width: 90%; /* Modal content full width on small screens */
+  }
+
+  .logout-button, .create {
+    font-size: 14px; /* Smaller button font size */
+  }
+
+  .username {
+    font-size: 16px; /* Smaller username font size */
+  }
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 300px;
+}
+
+.confirm-btn {
+  background-color: #db0808; /* Red for delete */
+  color: white;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #4CAF50; /* Green for cancel */
+  color: white;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirm-btn:hover, .cancel-btn:hover {
+  opacity: 0.9; /* Slight hover effect */
 }

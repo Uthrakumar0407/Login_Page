@@ -13,10 +13,11 @@ const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'novalnet',
-  database: 'myapp'
+  database: 'myapp',
 });
-//Testing GIT
-db.connect(err => {
+
+// Testing DB connection
+db.connect((err) => {
   if (err) throw err;
   console.log('MySQL connected...');
 });
@@ -67,6 +68,88 @@ app.post('/login', (req, res) => {
   });
 });
 
+// Route to create a new project
+app.post('/createProject', (req, res) => {
+  const { projectName, createdBy } = req.body;
+  const projectId = Date.now().toString(); // Generate a unique project ID
+  const createdTime = new Date().toISOString().split('T')[0];
+
+  const query = 'INSERT INTO projects (projectId, projectName, createdBy, createdTime) VALUES (?, ?, ?, ?)';
+  db.query(query, [projectId, projectName, createdBy, createdTime], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to create project' });
+    }
+    res.status(200).json({ message: 'Project created successfully' });
+  });
+});
+
+// Route to fetch all projects
+app.get('/projects', (req, res) => {
+  const query = 'SELECT * FROM projects';
+  db.query(query, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to fetch projects' });
+    }
+    res.status(200).json({ projects: results });
+  });
+});
+
+// Route to delete a project
+app.delete('/projects/:projectId', (req, res) => {
+  const projectId = req.params.projectId;
+  
+  const query = 'DELETE FROM projects WHERE projectId = ?';
+  db.query(query, [projectId], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to delete the project' });
+    }
+    res.status(200).json({ message: 'Project deleted successfully' });
+  });
+});
+
+// Route to create a new buglist
+app.post('/createbuglist', (req, res) => {
+  const { bugListName, createdBy } = req.body;
+  const bugListId = Date.now().toString(); // Generate a unique project ID
+  const createdTime = new Date().toISOString().split('T')[0];
+
+  const query = 'INSERT INTO bugLists (bugListId, bugListName, createdBy, createdTime) VALUES (?, ?, ?, ?)';
+  db.query(query, [bugListId, bugListName, createdBy, createdTime], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to create buglist' });
+    }
+    res.status(200).json({ message: 'Buglist created successfully' });
+  });
+});
+
+// Route to fetch all buglist
+app.get('/buglists', (req, res) => {
+  const query = 'SELECT * FROM buglists';
+  db.query(query, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to fetch bugiists' });
+    }
+    res.status(200).json({ bugiists: results });
+  });
+});
+
+// Route to delete a project
+app.delete('/buglists/:bugListId', (req, res) => {
+  const bugListId = req.params.bugListId;
+  
+  const query = 'DELETE FROM buglists WHERE bugListId = ?';
+  db.query(query, [bugListId], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to delete the bugList' });
+    }
+    res.status(200).json({ message: 'bugList deleted successfully' });
+  });
+});
+
+// Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+
+
