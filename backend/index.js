@@ -107,14 +107,15 @@ app.delete('/projects/:projectId', (req, res) => {
   });
 });
 
-// Route to create a new buglist
-app.post('/createbuglist', (req, res) => {
-  const { bugListName, createdBy } = req.body;
-  const bugListId = Date.now().toString(); // Generate a unique project ID
-  const createdTime = new Date().toISOString().split('T')[0];
+// Route to create a new buglist under a specific project
+app.post('/projects/:projectId/createbuglist', (req, res) => {
+  const { projectId } = req.params; // Project ID from the URL
+  const { bugListName, createdBy } = req.body; // Data from the request body
+  const bugListId = Date.now().toString(); // Generate a unique buglist ID
+  const createdTime = new Date().toISOString().split('T')[0]; // Creation date
 
-  const query = 'INSERT INTO bugLists (bugListId, bugListName, createdBy, createdTime) VALUES (?, ?, ?, ?)';
-  db.query(query, [bugListId, bugListName, createdBy, createdTime], (err, result) => {
+  const query = 'INSERT INTO bugLists (bugListId, bugListName, createdBy, createdTime, projectId) VALUES (?, ?, ?, ?, ?)';
+  db.query(query, [bugListId, bugListName, createdBy, createdTime, projectId], (err, result) => {
     if (err) {
       return res.status(500).json({ error: 'Failed to create buglist' });
     }
@@ -122,29 +123,32 @@ app.post('/createbuglist', (req, res) => {
   });
 });
 
-// Route to fetch all buglist
-app.get('/buglists', (req, res) => {
-  const query = 'SELECT * FROM buglists';
-  db.query(query, (err, results) => {
+// Route to fetch all buglists for a specific project
+app.get('/projects/:projectId/buglists', (req, res) => {
+  const { projectId } = req.params;
+
+  const query = 'SELECT * FROM bugLists WHERE projectId = ?';
+  db.query(query, [projectId], (err, results) => {
     if (err) {
-      return res.status(500).json({ error: 'Failed to fetch bugiists' });
+      return res.status(500).json({ error: 'Failed to fetch buglists' });
     }
-    res.status(200).json({ bugiists: results });
+    res.status(200).json({ buglists: results });
   });
 });
 
-// Route to delete a project
-app.delete('/buglists/:bugListId', (req, res) => {
-  const bugListId = req.params.bugListId;
+
+// // Route to delete a project
+// app.delete('/buglists/:bugListId', (req, res) => {
+//   const bugListId = req.params.bugListId;
   
-  const query = 'DELETE FROM buglists WHERE bugListId = ?';
-  db.query(query, [bugListId], (err, result) => {
-    if (err) {
-      return res.status(500).json({ error: 'Failed to delete the bugList' });
-    }
-    res.status(200).json({ message: 'bugList deleted successfully' });
-  });
-});
+//   const query = 'DELETE FROM buglists WHERE bugListId = ?';
+//   db.query(query, [bugListId], (err, result) => {
+//     if (err) {
+//       return res.status(500).json({ error: 'Failed to delete the bugList' });
+//     }
+//     res.status(200).json({ message: 'bugList deleted successfully' });
+//   });
+// });
 
 // Start the server
 app.listen(port, () => {

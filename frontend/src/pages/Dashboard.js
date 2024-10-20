@@ -151,11 +151,12 @@ const Dashboard = () => {
                 <td>{project.projectName}</td>
                 <td>{project.createdBy}</td>
                 <td>{new Date(project.createdTime).toLocaleDateString()}</td>
-                <td><button className = "OpenProject" onClick={() => {
-                  navigate('/buglist')}}> Open</button> 
-                  <button className = "deleteProject" onClick={() => openConfirmModal(project.projectId)}> 
-                    Delete
-                    </button> 
+                <td><button className="OpenProject" onClick={() => navigate(`/buglist/${project.projectId}`)}>
+                  Open
+              </button>
+              <button className="deleteProject" onClick={() => openConfirmModal(project.projectId)}> 
+                Delete
+              </button> 
                 </td>
               </tr>
             ))}
